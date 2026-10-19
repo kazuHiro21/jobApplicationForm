@@ -1,5 +1,5 @@
 <?php
-require_once 'core/dbconfig.php';
+require_once '../core/dbconfig.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $firstName = $_POST['firstName'];

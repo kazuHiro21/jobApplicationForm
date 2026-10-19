@@ -57,7 +57,26 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Records will be populated by PHP -->
+            <?php
+            require_once 'dbconfig.php';
+            $stmt = $pdo->query("SELECT * FROM game_developers ORDER BY dateAdded DESC");
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo "<tr>";
+                echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . htmlspecialchars($row['firstName']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['lastName']) . "</td>";
+                echo "<td>" . $row['yearsOfExperience'] . "</td>";
+                echo "<td>" . htmlspecialchars($row['primaryLanguage']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['favoriteEngine']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['notableProject']) . "</td>";
+                echo "<td>" . $row['dateAdded'] . "</td>";
+                echo "<td>";
+                echo "<a href='../actions/delete.php?id=" . $row['id'] . "' onclick='return confirm(\"Are you sure you want to delete this record?\');'>Delete</a> | ";
+                echo "<a href='../actions/update.php?id=" . $row['id'] . "'>Update</a>";
+                echo "</td>";
+                echo "</tr>";
+            }
+            ?>
         </tbody>
     </table>
 </body>
